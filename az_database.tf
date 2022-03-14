@@ -4,14 +4,6 @@ resource "random_password" "password" {
   override_special = "_%@"
 }
 
-resource "azurerm_mariadb_database" "db" {
-  name                = lower(var.project_name)
-  resource_group_name = azurerm_resource_group.this.name
-  server_name         = azurerm_mariadb_server.this.name
-  charset             = "utf8"
-  collation           = "utf8_general_ci"
-}
-
 resource "azurerm_mariadb_server" "server" {
   name                = "${var.project_name}-mariadb-server"
   location            = azurerm_resource_group.this.location
@@ -29,4 +21,12 @@ resource "azurerm_mariadb_server" "server" {
   geo_redundant_backup_enabled  = false
   public_network_access_enabled = false
   ssl_enforcement_enabled       = true
+}
+
+resource "azurerm_mariadb_database" "db" {
+  name                = lower(var.project_name)
+  resource_group_name = azurerm_resource_group.this.name
+  server_name         = azurerm_mariadb_server.server.name
+  charset             = "utf8"
+  collation           = "utf8_general_ci"
 }
