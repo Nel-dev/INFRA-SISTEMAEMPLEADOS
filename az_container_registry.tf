@@ -8,7 +8,7 @@ resource "azurerm_container_registry" "acr" {
 
   georeplications {
     location                = azurerm_resource_group.this.location
-    zone_redundancy_enabled = true
+    zone_redundancy_enabled = false
     tags                    = {}
   }
 }
