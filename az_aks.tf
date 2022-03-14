@@ -1,5 +1,5 @@
 resource "azurerm_kubernetes_cluster" "this" {
-  name                = "${var.project_name}---aks"
+  name                = "${var.project_name}"
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
   dns_prefix          = lower(var.project_name)
