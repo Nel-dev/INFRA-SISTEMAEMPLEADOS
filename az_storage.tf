@@ -21,6 +21,6 @@ resource "azurerm_storage_blob" "environment" {
   DB_NAME=${azurerm_mariadb_database.db.name}
   DB_PASSWORD=${azurerm_mariadb_server.server.administrator_login_password}
   DB_HOST=${azurerm_mariadb_server.server.fqdn}
-  DB_USER=${azurerm_mariadb_server.server.administrator_login}
+  DB_USER=${azurerm_mariadb_server.server.administrator_login}@${azurerm_mariadb_server.server.name}
   EOF
 }
