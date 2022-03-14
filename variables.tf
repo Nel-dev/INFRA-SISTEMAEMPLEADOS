@@ -17,6 +17,3 @@ variable "environment" {
   description = "App environment"
 }
 
-variable "github_token" {
-  default = "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"
-}
