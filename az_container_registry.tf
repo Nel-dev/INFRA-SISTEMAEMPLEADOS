@@ -6,9 +6,5 @@ resource "azurerm_container_registry" "acr" {
   sku                 = "Premium"
   admin_enabled       = false
 
-  georeplications {
-    location                = azurerm_resource_group.this.location
-    zone_redundancy_enabled = false
-    tags                    = {}
-  }
+
 }
