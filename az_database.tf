@@ -9,7 +9,7 @@ resource "azurerm_mariadb_server" "server" {
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
 
-  administrator_login          = "root"
+  administrator_login          = var.project_name
   administrator_login_password = random_password.password.result
 
   sku_name   = "B_Gen5_2"
