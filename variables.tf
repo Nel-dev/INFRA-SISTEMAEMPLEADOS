@@ -7,14 +7,8 @@ variable "project_name" {
 
 variable "location" {
   type        = string
-  default     = "Central US"
+  default     = "East US"
   description = "Azure project location"
-}
-
-variable "name" {
-  type        = string
-  default     = ""
-  description = "description"
 }
 
 variable "environment" {
