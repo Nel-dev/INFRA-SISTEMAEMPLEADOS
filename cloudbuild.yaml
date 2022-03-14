@@ -1,0 +1,28 @@
+# Local test
+steps:
+  #
+  # Init Terraform sources
+  #
+  - id: Terraform Init
+    name: hashicorp/terraform
+    args: ['init']
+    dir: 'terraform'
+    waitFor: ['-']
+
+  #
+  # Generate coverage report
+  #
+  # - id: Generate Coverage
+  #   name: gradle:7.2-jdk11
+  #   args: ['Test:Coverage']
+  #   dir: 'functions'
+  #   waitFor: ['-']
+
+ #
+  # Apply Terraform changes
+  #
+  - id: Terraform Apply
+    name: hashicorp/terraform
+    args: ['apply', '-auto-approve']
+    dir: 'terraform'
+    waitFor: ['Terraform Init']
