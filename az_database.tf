@@ -36,5 +36,5 @@ resource "azurerm_mariadb_firewall_rule" "default" {
   resource_group_name = azurerm_resource_group.this.name
   server_name         = azurerm_mariadb_server.server.name
   start_ip_address    = "0.0.0.0"
-  end_ip_address      = "255.255.255.255
+  end_ip_address      = "255.255.255.255"
 }
