@@ -20,7 +20,7 @@ resource "azurerm_mariadb_server" "server" {
   backup_retention_days         = 7
   geo_redundant_backup_enabled  = false
   public_network_access_enabled = true
-  ssl_enforcement_enabled       = true
+  ssl_enforcement_enabled       = false
 }
 
 resource "azurerm_mariadb_database" "db" {
@@ -29,4 +29,12 @@ resource "azurerm_mariadb_database" "db" {
   server_name         = azurerm_mariadb_server.server.name
   charset             = "utf8"
   collation           = "utf8_general_ci"
+}
+
+resource "azurerm_mariadb_firewall_rule" "default" {
+  name                = "allow-all"
+  resource_group_name = azurerm_resource_group.this.name
+  server_name         = "azurerm_mariadb_server.server.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "0.0.0.0"
 }
