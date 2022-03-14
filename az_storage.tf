@@ -1,8 +1,3 @@
-resource "azurerm_resource_group" "this" {
-  name     = "${var.project_name}ResourceGroup"
-  location = var.location
-}
-
 resource "azurerm_storage_account" "this" {
   name                     = var.project_name
   resource_group_name      = azurerm_resource_group.this.name

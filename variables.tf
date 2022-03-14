@@ -10,3 +10,9 @@ variable "location" {
   default     = "Central US"
   description = "Azure project location"
 }
+
+variable "name" {
+  type        = string
+  default     = ""
+  description = "description"
+}
