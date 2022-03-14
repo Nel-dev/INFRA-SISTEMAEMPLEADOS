@@ -10,10 +10,3 @@ variable "location" {
   default     = "Central US"
   description = "Azure project location"
 }
-
-variable "environment" {
-  type        = string
-  default     = "Production"
-  description = "App environment"
-}
-
