@@ -3,7 +3,8 @@ Asignar GITHUB_TOKEN en los variable set de app.terraform.io
 */
 
 data "github_repository" "repo" {
-  full_name = "Nel-dev/INFRA-SISTEMAEMPLEADOS"
+  full_name = "Nel-dev/SISTEMAEMPLEADOS"
+  private      = false
 }
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_environment_secret
