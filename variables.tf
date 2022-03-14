@@ -16,3 +16,9 @@ variable "name" {
   default     = ""
   description = "description"
 }
+
+variable "environment" {
+  type        = string
+  default     = "Production"
+  description = "App environment"
+}
