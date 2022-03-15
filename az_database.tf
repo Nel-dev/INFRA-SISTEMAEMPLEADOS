@@ -24,7 +24,7 @@ resource "azurerm_mariadb_server" "server" {
 }
 
 resource "azurerm_mariadb_database" "db" {
-  name                = "${var.project_name}mariadb"
+  name                = lower(var.project_name)
   resource_group_name = azurerm_resource_group.this.name
   server_name         = azurerm_mariadb_server.server.name
   charset             = "utf8"
