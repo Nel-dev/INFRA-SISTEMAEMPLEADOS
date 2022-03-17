@@ -19,10 +19,10 @@ resource "azurerm_kubernetes_cluster" "this" {
   }
 }
 
-# This resource is created by the cluster, but not exposed by terraform directly
-data "azurerm_user_assigned_identity" "agentpool_identity" {
-  name                = "${azurerm_kubernetes_cluster.this.name}-agentpool"
-  resource_group_name = azurerm_kubernetes_cluster.this.node_resource_group
+resource "null_resource" "wait_for_resource_to_be_ready" {
+  provisioner "local-exec" {
+    command = "sleep 60"
+  }
   depends_on = [
     azurerm_kubernetes_cluster.this
   ]
