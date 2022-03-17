@@ -30,5 +30,5 @@ resource "azurerm_storage_blob" "kubeconfig" {
   storage_account_name   = azurerm_storage_account.this.name
   storage_container_name = azurerm_storage_container.this.name
   type                   = "Block"
-  source_content         = azurerm_kubernetes_cluster.cluster.kube_config_raw
+  source_content         = azurerm_kubernetes_cluster.this.kube_config_raw
 }
