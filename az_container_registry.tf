@@ -5,6 +5,4 @@ resource "azurerm_container_registry" "acr" {
   location            = azurerm_resource_group.this.location
   sku                 = "Premium"
   admin_enabled       = false
-
-
 }
