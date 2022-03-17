@@ -1,5 +1,5 @@
 resource "azurerm_kubernetes_cluster" "this" {
-  name                = "${var.project_name}"
+  name                = var.project_name
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
   dns_prefix          = lower(var.project_name)
@@ -19,11 +19,11 @@ resource "azurerm_kubernetes_cluster" "this" {
   }
 }
 
-/*
-resource "azurerm_role_assignment" "this" {
-  principal_id                     = azurerm_kubernetes_cluster.this.kubelet_identity.0.object_id
-  role_definition_name             = "AcrPull"
-  scope                            = azurerm_container_registry.acr.id
-  skip_service_principal_aad_check = true
+# This resource is created by the cluster, but not exposed by terraform directly
+data "azurerm_user_assigned_identity" "agentpool_identity" {
+  name                = "${azurerm_kubernetes_cluster.this.name}-agentpool"
+  resource_group_name = azurerm_kubernetes_cluster.this.node_resource_group
+  depends_on = [
+    azurerm_kubernetes_cluster.this
+  ]
 }
-*/

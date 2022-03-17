@@ -7,6 +7,12 @@ resource "azurerm_container_registry" "acr" {
   admin_enabled       = true
 }
 
+resource "azurerm_role_assignment" "roles" {
+  scope                = azurerm_container_registry.acr.id
+  role_definition_name = "AcrPull"
+  principal_id         = data.azurerm_user_assigned_identity.agentpool_identity.principal_id
+}
+
 resource "azurerm_container_registry_scope_map" "this" {
   name                    = "${var.project_name}ScopeMap"
   container_registry_name = azurerm_container_registry.acr.name
