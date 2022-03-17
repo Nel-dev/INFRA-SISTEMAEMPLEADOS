@@ -7,6 +7,24 @@ resource "azurerm_container_registry" "acr" {
   admin_enabled       = true
 }
 
+resource "azurerm_role_definition" "role_assignment_contributor" {
+  name        = "Role Assignment Owner"
+  scope       = azurerm_management_group.root.id
+  description = "A role designed for writing and deleting role assignments"
+
+  permissions {
+    actions = [
+      "Microsoft.Authorization/roleAssignments/write",
+      "Microsoft.Authorization/roleAssignments/delete",
+    ]
+    not_actions = []
+  }
+
+  assignable_scopes = [
+    azurerm_management_group.root.id
+  ]
+}
+
 resource "azurerm_container_registry_scope_map" "this" {
   name                    = "${var.project_name}ScopeMap"
   container_registry_name = azurerm_container_registry.acr.name
@@ -16,9 +34,6 @@ resource "azurerm_container_registry_scope_map" "this" {
     "repositories/repo1/content/write"
   ]
 }
-
-
-
 
 resource "azurerm_role_assignment" "roles" {
   # Giving access to AKS SP identity created to akssubnet by assigning it
