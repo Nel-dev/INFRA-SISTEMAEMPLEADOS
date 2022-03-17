@@ -3,6 +3,7 @@ resource "azurerm_resource_group" "this" {
   location = var.location
 }
 
+/*
 resource "azurerm_management_group" "root" {
   display_name = "${var.project_name}ManagementGroup"
 
@@ -10,3 +11,4 @@ resource "azurerm_management_group" "root" {
     data.azurerm_subscription.current.subscription_id
   ]
 }
+*/

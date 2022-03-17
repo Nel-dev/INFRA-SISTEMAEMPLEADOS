@@ -14,6 +14,10 @@ resource "azurerm_kubernetes_cluster" "this" {
     type = "SystemAssigned"
   }
 
+  role_based_access_control {
+    enabled = true
+  }
+
   tags = {
     Environment = "Production"
   }
