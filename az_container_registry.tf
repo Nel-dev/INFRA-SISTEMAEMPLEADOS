@@ -3,7 +3,7 @@ resource "azurerm_container_registry" "acr" {
   name                = "${var.project_name}Container"
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
-  sku                 = "Standard"
+  sku                 = "Premium"
   admin_enabled       = true
 }
 
@@ -16,3 +16,6 @@ resource "azurerm_container_registry_scope_map" "this" {
     "repo/content/write"
   ]
 }
+
+
+
