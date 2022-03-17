@@ -3,7 +3,7 @@ resource "azurerm_container_registry" "acr" {
   name                = "${var.project_name}Container"
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
-  sku                 = "Premium"
+  sku                 = "Standard"
   admin_enabled       = true
 }
 
@@ -12,16 +12,7 @@ resource "azurerm_container_registry_scope_map" "this" {
   container_registry_name = azurerm_container_registry.acr.name
   resource_group_name     = azurerm_resource_group.this.name
   actions = [
-    "repositories/repo1/content/read",
-    "repositories/repo1/content/write"
+    "repo/content/read",
+    "repo/content/write"
   ]
 }
-
-resource "azurerm_role_assignment" "aks_acr" {
-  scope                            = azurerm_container_registry.acr.id
-  role_definition_name             = "AcrPull"
-  principal_id                     = azurerm_kubernetes_cluster.this.kubelet_identity[0].object_id
-  skip_service_principal_aad_check = true
-}
-
-
