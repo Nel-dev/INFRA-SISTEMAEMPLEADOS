@@ -12,10 +12,7 @@ resource "azurerm_container_registry_scope_map" "this" {
   container_registry_name = azurerm_container_registry.acr.name
   resource_group_name     = azurerm_resource_group.this.name
   actions = [
-    "repo/content/read",
-    "repo/content/write"
+    "repositories/repo/content/read",
+    "repositories/repo/content/write"
   ]
 }
-
-
-
