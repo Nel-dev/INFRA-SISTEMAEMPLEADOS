@@ -24,3 +24,11 @@ resource "azurerm_storage_blob" "environment" {
   DB_USER=${azurerm_mariadb_server.server.administrator_login}@${azurerm_mariadb_server.server.name}
   EOF
 }
+
+resource "azurerm_storage_blob" "kubeconfig" {
+  name                   = "kubeconfig"
+  storage_account_name   = azurerm_storage_account.this.name
+  storage_container_name = azurerm_storage_container.this.name
+  type                   = "Block"
+  source_content         = azurerm_kubernetes_cluster.cluster.kube_config_raw
+}

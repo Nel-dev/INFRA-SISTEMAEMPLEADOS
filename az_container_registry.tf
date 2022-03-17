@@ -6,3 +6,13 @@ resource "azurerm_container_registry" "acr" {
   sku                 = "Premium"
   admin_enabled       = true
 }
+
+resource "azurerm_container_registry_scope_map" "this" {
+  name                    = "${var.project_name}ScopeMap"
+  container_registry_name = azurerm_container_registry.acr.name
+  resource_group_name     = azurerm_resource_group.this.name
+  actions = [
+    "repositories/repo1/content/read",
+    "repositories/repo1/content/write"
+  ]
+}
